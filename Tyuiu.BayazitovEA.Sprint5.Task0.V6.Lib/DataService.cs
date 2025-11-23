@@ -1,15 +1,17 @@
-﻿using tyuiu.cources.programming.interfaces.Sprint5;
+﻿
+using tyuiu.cources.programming.interfaces.Sprint5;
+
 namespace Tyuiu.BayazitovEA.Sprint5.Task0.V6.Lib
 {
     public class DataService : ISprint5Task0V6
     {
         public string SaveToFileTextData(int x)
         {
-            string path = Path.Combine("OutPutFileTask0.txt");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "OutputFileTask0.txt");
+            double z = x / (Math.Sqrt(Math.Pow(x, 2) + x));
+            z = Math.Round(z, 3);
 
-            double z = x/(Math.Sqrt(Math.Pow(x,2)+x));
-            z=Math.Round(z,3);
-            File.WriteAllText(path,Convert.ToString(z));
+            File.WriteAllText(path, z.ToString());
             return path;
         }
     }
