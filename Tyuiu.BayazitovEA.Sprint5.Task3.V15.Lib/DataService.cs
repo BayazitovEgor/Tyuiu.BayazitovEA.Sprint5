@@ -24,7 +24,7 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task3.V15.Lib
             File.WriteAllBytes(outputFile, binaryData);
 
             // Возвращаем base64 строку
-            return "AAAAAACgXMA=";
+            return Convert.ToBase64String(binaryData);
         }
     }
 }
