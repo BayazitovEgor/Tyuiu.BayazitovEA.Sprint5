@@ -5,19 +5,28 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task3.V15.Lib
     {
         public string SaveToFileTextData(int x)
         {
-            // F(x) = -1.4x³ + 2.3x² + 0.6x
             double result = -1.4 * Math.Pow(x, 3) + 2.3 * Math.Pow(x, 2) + 0.6 * x;
             result = Math.Round(result, 3);
 
-            // Сохраняем в бинарный файл
+
+
+            // Создаем бинарные данные в памяти
+            byte[] binaryData;
+            using (MemoryStream stream = new MemoryStream())
+            using (BinaryWriter writer = new BinaryWriter(stream))
+            {
+                writer.Write(result);
+                binaryData = stream.ToArray();
+            }
+
+
+            // Сохраняем в файл (по требованию задания)
             string tempPath = Path.GetTempPath();
             string outputFile = Path.Combine(tempPath, "OutPutFileTask3.bin");
+            File.WriteAllBytes(outputFile, binaryData);
 
-
-
-            // Читаем файл и возвращаем base64
-            byte[] fileBytes = File.ReadAllBytes(outputFile);
-            return Convert.ToBase64String(fileBytes);
+            // Возвращаем byte[]
+            return Convert.ToBase64String(binaryData);
         }
     }
 }
