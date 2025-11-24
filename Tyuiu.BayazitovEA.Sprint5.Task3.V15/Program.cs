@@ -6,9 +6,10 @@ internal class Program
         int x = 5;
 
         DataService ds = new DataService();
-        string res = ds.SaveToFileTextData(x);
+        byte[] res = ds.SaveToFileTextData(x);
 
-        Console.WriteLine(res);
+        Console.WriteLine(Convert.ToBase64String(res));
+
 
         Console.ReadKey();
     }
