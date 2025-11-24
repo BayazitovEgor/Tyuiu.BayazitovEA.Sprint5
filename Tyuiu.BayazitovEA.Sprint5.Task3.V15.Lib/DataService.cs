@@ -13,10 +13,7 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task3.V15.Lib
             string tempPath = Path.GetTempPath();
             string outputFile = Path.Combine(tempPath, "OutPutFileTask3.bin");
 
-            using (BinaryWriter writer = new BinaryWriter(File.Open(outputFile, FileMode.Create)))
-            {
-                writer.Write(result);
-            }
+
 
             // Читаем файл и возвращаем base64
             byte[] fileBytes = File.ReadAllBytes(outputFile);
