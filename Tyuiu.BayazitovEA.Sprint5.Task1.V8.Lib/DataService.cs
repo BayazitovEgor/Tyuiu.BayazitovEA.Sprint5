@@ -60,14 +60,17 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task1.V8.Lib
             // Округляем до 2 знаков
             result = Math.Round(result, 2);
 
-            // Если число целое, убираем дробную часть
-            if (result == (int)result)
+            // Преобразуем в строку с точкой
+            string resultStr = result.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+
+            // Убираем лишние нули в конце
+            if (resultStr.Contains("."))
             {
-                return ((int)result).ToString();
+                resultStr = resultStr.TrimEnd('0').TrimEnd('.');
             }
 
-            // Иначе форматируем с 2 знаками и заменяем точку на запятую
-            return result.ToString("0.00").Replace(".", ",");
+            // Заменяем точку на запятую
+            return resultStr.Replace(".", ",");
         }
     }
-    }
+}
