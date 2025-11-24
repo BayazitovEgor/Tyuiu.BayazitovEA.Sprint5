@@ -5,10 +5,9 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task3.V15.Lib
     {
         public string SaveToFileTextData(int x)
         {
+            // F(x) = -1.4x³ + 2.3x² + 0.6x
             double result = -1.4 * Math.Pow(x, 3) + 2.3 * Math.Pow(x, 2) + 0.6 * x;
             result = Math.Round(result, 3);
-
-
 
             // Создаем бинарные данные в памяти
             byte[] binaryData;
@@ -19,13 +18,11 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task3.V15.Lib
                 binaryData = stream.ToArray();
             }
 
-
-            // Сохраняем в файл (по требованию задания)
+            // Сохраняем в файл
             string tempPath = Path.GetTempPath();
             string outputFile = Path.Combine(tempPath, "OutPutFileTask3.bin");
             File.WriteAllBytes(outputFile, binaryData);
 
-            // Возвращаем byte[]
             return Convert.ToBase64String(binaryData);
         }
     }
