@@ -10,15 +10,22 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task3.V15.Lib
             result = Math.Round(result, 3);
 
             // Создаем бинарные данные
-            byte[] binaryData = BitConverter.GetBytes(result);
+            byte[] binaryData;
+            using (MemoryStream stream = new MemoryStream())
+            using (BinaryWriter writer = new BinaryWriter(stream))
+            {
+                writer.Write(result);
+                binaryData = stream.ToArray();
+            }
 
             // Сохраняем в файл
             string tempPath = Path.GetTempPath();
             string outputFile = Path.Combine(tempPath, "OutPutFileTask3.bin");
             File.WriteAllBytes(outputFile, binaryData);
 
-            // Возвращаем строковое представление байтов
-            return BitConverter.ToString(binaryData).Replace("-", "");
+            // Возвращаем base64 строку
+            string base64String = Convert.ToBase64String(binaryData);
+            return base64String;
         }
     }
 }
