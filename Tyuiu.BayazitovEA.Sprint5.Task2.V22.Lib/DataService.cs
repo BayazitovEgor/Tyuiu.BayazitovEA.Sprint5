@@ -31,7 +31,7 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task2.V22.Lib
 
                     if (j < cols - 1)
                     {
-                        result.Append("; ");
+                        result.Append(";");
                     }
                 }
                 if (i < rows - 1)
