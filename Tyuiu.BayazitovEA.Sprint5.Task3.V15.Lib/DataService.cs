@@ -18,7 +18,9 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task3.V15.Lib
                 writer.Write(result);
             }
 
-            return result.ToString();
+            // Читаем файл и возвращаем base64
+            byte[] fileBytes = File.ReadAllBytes(outputFile);
+            return Convert.ToBase64String(fileBytes);
         }
     }
 }
