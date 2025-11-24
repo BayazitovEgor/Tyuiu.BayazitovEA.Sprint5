@@ -1,29 +1,24 @@
-﻿using tyuiu.cources.programming.interfaces.Sprint5;
+﻿using System.Text;
+using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.BayazitovEA.Sprint5.Task1.V8.Lib
 {
     public class DataService : ISprint5Task1V8
     {
         public string SaveToFileTextData(int startValue, int stopValue)
         {
-            try
+            StringBuilder results = new StringBuilder();
+
+            for (int x = startValue; x <= stopValue; x++)
             {
-                string tempPath = Path.GetTempPath();
-                string outputFile = Path.Combine(tempPath, "OutPutFileTask1.txt");
-
-                File.WriteAllText(outputFile, string.Empty);
-
-                for (int x = startValue; x <= stopValue; x++)
-                {
-                    double result = CalculateFunction(x);
-                    File.AppendAllText(outputFile, $"{result}\n");
-                }
-
-                return $"Данные успешно сохранены в файл: {outputFile}";
+                double result = CalculateFunction(x);
+                results.AppendLine(result.ToString("0.00").Replace(".", ","));
             }
-            catch (Exception ex)
-            {
-                return $"Ошибка при сохранении в файл: {ex.Message}";
-            }
+
+            string tempPath = Path.GetTempPath();
+            string outputFile = Path.Combine(tempPath, "OutPutFileTask1.txt");
+            File.WriteAllText(outputFile, results.ToString());
+
+            return results.ToString().Trim();
         }
 
         private double CalculateFunction(double x)
