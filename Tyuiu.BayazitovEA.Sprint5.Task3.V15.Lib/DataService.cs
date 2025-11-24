@@ -9,21 +9,17 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task3.V15.Lib
             double result = -1.4 * Math.Pow(x, 3) + 2.3 * Math.Pow(x, 2) + 0.6 * x;
             result = Math.Round(result, 3);
 
-            // Создаем бинарные данные в памяти
-            byte[] binaryData;
-            using (MemoryStream stream = new MemoryStream())
-            using (BinaryWriter writer = new BinaryWriter(stream))
-            {
-                writer.Write(result);
-                binaryData = stream.ToArray();
-            }
-
-            // Сохраняем в файл
+            // Сохраняем в бинарный файл
             string tempPath = Path.GetTempPath();
             string outputFile = Path.Combine(tempPath, "OutPutFileTask3.bin");
-            File.WriteAllBytes(outputFile, binaryData);
 
-            return Convert.ToBase64String(binaryData);
+            using (BinaryWriter writer = new BinaryWriter(File.Open(outputFile, FileMode.Create)))
+            {
+                writer.Write(result);
+            }
+
+            // Возвращаем строковое представление для консоли
+            return result.ToString();
         }
     }
 }
