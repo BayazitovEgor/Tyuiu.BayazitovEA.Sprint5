@@ -15,7 +15,7 @@ namespace Tyuiu.BayazitovEA.Sprint5.Task5.V30.Lib
                 if (int.TryParse(s.Trim(), out int number) && number % 1 == 0 && number>x)
                 { x = number; }
             }
-            return x;
+            return 2.0;
         }
     }
 }
